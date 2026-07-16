@@ -1,0 +1,203 @@
+{
+    "project": {
+        "title": "Explainable AI for Black-Box Models in Medical Diagnosis",
+        "version": "0.1.0",
+        "safety_disclaimer": "This prediction is for decision support only and must be reviewed by a qualified clinician."
+    },
+    "tasks": {
+        "diabetes": {
+            "task_name": "Diabetes Risk Prediction",
+            "model_path": "artifacts/diabetes/models/best_Diabetes_Stack.pkl",
+            "preprocessors": {
+                "imputer_path": "artifacts/diabetes/preprocessors/diab_knn_imp.pkl",
+                "scaler_path": "artifacts/diabetes/preprocessors/diab_scaler.pkl"
+            },
+            "raw_features": [
+                "Pregnancies",
+                "Glucose",
+                "BloodPressure",
+                "SkinThickness",
+                "Insulin",
+                "BMI",
+                "DiabetesPedigreeFunction",
+                "Age"
+            ],
+            "inference_columns": [
+                "Pregnancies",
+                "Glucose",
+                "BloodPressure",
+                "SkinThickness",
+                "Insulin",
+                "BMI",
+                "DiabetesPedigreeFunction",
+                "Age",
+                "Age_Glucose",
+                "BMI_Insulin",
+                "Glucose_Preg",
+                "BMI_Glucose",
+                "Glucose_sq",
+                "BMI_sq",
+                "Insulin_Glucose",
+                "Age_group",
+                "High_Glucose",
+                "Obese",
+                "High_BP"
+            ],
+            "labels": [
+                "Lower Diabetes Risk",
+                "Elevated Diabetes Risk"
+            ],
+            "static_figures": {
+                "overview": [
+                    "static_outputs/diabetes/diab_class_dist.png",
+                    "static_outputs/diabetes/diab_cm.png",
+                    "static_outputs/diabetes/diab_corr.png",
+                    "static_outputs/diabetes/diab_pr_combined.png",
+                    "static_outputs/diabetes/diab_roc_combined.png"
+                ],
+                "xai": [
+                    "static_outputs/diabetes/shap_bar_Diabetes.png",
+                    "static_outputs/diabetes/shap_waterfall_Diabetes_s1.png",
+                    "static_outputs/diabetes/lime_Diabetes_HighRisk_Positive.png",
+                    "static_outputs/diabetes/lime_patient_grid_Diabetes.png",
+                    "static_outputs/diabetes/lime_shap_agreement_Diabetes.png"
+                ]
+            }
+        },
+        "heart": {
+            "task_name": "Heart Disease Prediction",
+            "model_path": "artifacts/heart/models/best_Heart_pipe.pkl",
+            "raw_features": [
+                "age",
+                "sex",
+                "cp",
+                "trestbps",
+                "chol",
+                "fbs",
+                "restecg",
+                "thalach",
+                "exang",
+                "oldpeak",
+                "slope",
+                "ca",
+                "thal"
+            ],
+            "engineered_features": [
+                "age_maxhr",
+                "hr_reserve",
+                "bp_high",
+                "bp_low",
+                "chol_high",
+                "age_sq",
+                "senior",
+                "oldpeak_hr"
+            ],
+            "labels": [
+                "No Disease",
+                "Heart Disease"
+            ],
+            "static_figures": {
+                "overview": [
+                    "static_outputs/heart/heart_class_dist.png",
+                    "static_outputs/heart/heart_cm.png",
+                    "static_outputs/heart/heart_corr.png",
+                    "static_outputs/heart/heart_pr_combined.png",
+                    "static_outputs/heart/heart_roc_combined.png"
+                ],
+                "xai": [
+                    "static_outputs/heart/shap_bar_Heart.png",
+                    "static_outputs/heart/shap_waterfall_Heart_s1.png",
+                    "static_outputs/heart/lime_Heart_HighRisk_Positive.png",
+                    "static_outputs/heart/lime_patient_grid_Heart.png",
+                    "static_outputs/heart/lime_shap_agreement_Heart.png"
+                ]
+            }
+        },
+        "pneumonia": {
+            "task_name": "Pneumonia Detection",
+            "model_path": "artifacts/pneumonia/models/best_pneumonia_densenet121.keras",
+            "decision_threshold": 0.925,
+            "image_size": [
+                224,
+                224
+            ],
+            "labels": [
+                "NORMAL",
+                "PNEUMONIA"
+            ],
+            "static_figures": {
+                "overview": [
+                    "static_outputs/pneumonia/pneu_cm.png",
+                    "static_outputs/pneumonia/pneu_learning_curves.png",
+                    "static_outputs/pneumonia/pneu_pr.png",
+                    "static_outputs/pneumonia/pneu_roc.png"
+                ],
+                "gradcam_fallback": [
+                    "static_outputs/pneumonia/gradcam_04_Correct_TPneu_PPneu.png",
+                    "static_outputs/pneumonia/gradcam_montage_12.png"
+                ]
+            }
+        }
+    },
+    "modules": {
+        "diabetes": {
+            "population_caveat": "This model was trained on the PIMA dataset — adult women of Pima (Native American) heritage. Its calibration may not transfer to men, to other ancestries, or to the Bangladeshi population this clinic serves.",
+            "fields": [
+                {"field": "Pregnancies", "label": "Number of pregnancies", "unit": null, "type": "integer", "min": 0, "max": 20, "step": 1, "default": 1, "help": "Total number of times pregnant."},
+                {"field": "Glucose", "label": "Plasma glucose, 2-hr OGTT", "unit": "mg/dL", "type": "integer", "min": 40, "max": 400, "step": 1, "default": 120, "help": "2-hour plasma glucose from an oral glucose tolerance test — not a random fingerstick. A random glucose entered here is out-of-distribution input the model will still answer."},
+                {"field": "BloodPressure", "label": "Diastolic blood pressure", "unit": "mm Hg", "type": "integer", "min": 30, "max": 130, "step": 1, "default": 72, "help": "Diastolic only. A systolic value (e.g. 120) is out of range here."},
+                {"field": "SkinThickness", "label": "Triceps skinfold thickness", "unit": "mm", "type": "integer", "min": 0, "max": 99, "step": 1, "default": 20, "help": "Triceps skin-fold thickness."},
+                {"field": "Insulin", "label": "2-hour serum insulin", "unit": "µU/mL", "type": "integer", "min": 0, "max": 900, "step": 1, "default": 80, "help": "2-hour serum insulin."},
+                {"field": "BMI", "label": "Body mass index", "unit": "kg/m²", "type": "number", "min": 10.0, "max": 70.0, "step": 0.1, "default": 30.0, "help": "Body mass index (weight in kg / height in m²)."},
+                {"field": "DiabetesPedigreeFunction", "label": "Diabetes pedigree function", "unit": null, "type": "number", "min": 0.0, "max": 2.5, "step": 0.001, "default": 0.4, "help": "A heritability score derived from family history (unitless)."},
+                {"field": "Age", "label": "Age", "unit": "years", "type": "integer", "min": 21, "max": 100, "step": 1, "default": 33, "help": "Patient age. The model was trained on adults aged 21+."}
+            ],
+            "sample_cases": [
+                {"name": "Low risk — clear", "values": {"Pregnancies": 1, "Glucose": 85, "BloodPressure": 66, "SkinThickness": 20, "Insulin": 90, "BMI": 24.0, "DiabetesPedigreeFunction": 0.25, "Age": 25}},
+                {"name": "High risk — clear", "values": {"Pregnancies": 8, "Glucose": 190, "BloodPressure": 88, "SkinThickness": 40, "Insulin": 300, "BMI": 42.0, "DiabetesPedigreeFunction": 1.2, "Age": 55}},
+                {"name": "Near threshold", "values": {"Pregnancies": 3, "Glucose": 106, "BloodPressure": 74, "SkinThickness": 25, "Insulin": 120, "BMI": 29.0, "DiabetesPedigreeFunction": 0.45, "Age": 38}},
+                {"name": "Missing values", "values": {"Pregnancies": 3, "Glucose": null, "BloodPressure": 72, "SkinThickness": null, "Insulin": null, "BMI": 29.0, "DiabetesPedigreeFunction": 0.4, "Age": 45}}
+            ]
+        },
+        "heart": {
+            "population_caveat": "This model was trained on the combined UCI heart-disease cohort (Cleveland, Hungary, Switzerland, and VA Long Beach). It was not validated on this population.",
+            "fields": [
+                {"field": "age", "label": "Age", "unit": "years", "type": "integer", "min": 20, "max": 100, "step": 1, "default": 54, "help": "Patient age."},
+                {"field": "sex", "label": "Sex", "unit": null, "type": "category", "default": 1, "options": [{"value": 0, "label": "Female"}, {"value": 1, "label": "Male"}]},
+                {"field": "cp", "label": "Chest pain type", "unit": null, "type": "category", "default": 3, "options": [{"value": 0, "label": "Typical angina"}, {"value": 1, "label": "Atypical angina"}, {"value": 2, "label": "Non-anginal pain"}, {"value": 3, "label": "Asymptomatic"}]},
+                {"field": "trestbps", "label": "Resting blood pressure", "unit": "mm Hg", "type": "integer", "min": 80, "max": 220, "step": 1, "default": 130, "help": "Measured on admission, seated at rest."},
+                {"field": "chol", "label": "Serum cholesterol", "unit": "mg/dL", "type": "integer", "min": 100, "max": 620, "step": 1, "default": 240, "help": "Serum cholesterol."},
+                {"field": "fbs", "label": "Fasting blood sugar > 120 mg/dL", "unit": null, "type": "boolean", "default": 0, "options": [{"value": 0, "label": "No"}, {"value": 1, "label": "Yes"}], "help": "Whether fasting blood sugar exceeds 120 mg/dL."},
+                {"field": "restecg", "label": "Resting ECG result", "unit": null, "type": "category", "default": 0, "options": [{"value": 0, "label": "Normal"}, {"value": 1, "label": "ST-T wave abnormality"}, {"value": 2, "label": "Left ventricular hypertrophy"}]},
+                {"field": "thalch", "label": "Maximum heart rate achieved", "unit": "bpm", "type": "integer", "min": 60, "max": 220, "step": 1, "default": 150, "help": "Peak heart rate during exercise testing."},
+                {"field": "exang", "label": "Exercise-induced angina", "unit": null, "type": "boolean", "default": 0, "options": [{"value": 0, "label": "No"}, {"value": 1, "label": "Yes"}], "help": "Whether angina was induced by exercise."},
+                {"field": "oldpeak", "label": "ST depression (oldpeak)", "unit": "mm", "type": "number", "min": 0.0, "max": 7.0, "step": 0.1, "default": 1.0, "help": "ST depression induced by exercise relative to rest."},
+                {"field": "slope", "label": "Slope of peak-exercise ST segment", "unit": null, "type": "category", "default": 1, "options": [{"value": 0, "label": "Upsloping"}, {"value": 1, "label": "Flat"}, {"value": 2, "label": "Downsloping"}]},
+                {"field": "ca", "label": "Major vessels colored by fluoroscopy", "unit": null, "type": "integer", "min": 0, "max": 3, "step": 1, "default": 0, "help": "Number of major vessels (0–3) coloured on fluoroscopy."},
+                {"field": "thal", "label": "Thallium stress test result", "unit": null, "type": "category", "default": 0, "options": [{"value": 0, "label": "Normal"}, {"value": 1, "label": "Fixed defect"}, {"value": 2, "label": "Reversible defect"}]}
+            ],
+            "sample_cases": [
+                {"name": "Low risk — clear", "values": {"age": 40, "sex": 0, "cp": 2, "trestbps": 120, "chol": 200, "fbs": 0, "restecg": 0, "thalch": 172, "exang": 0, "oldpeak": 0.0, "slope": 0, "ca": 0, "thal": 0}},
+                {"name": "High risk — clear", "values": {"age": 63, "sex": 1, "cp": 3, "trestbps": 150, "chol": 290, "fbs": 1, "restecg": 2, "thalch": 108, "exang": 1, "oldpeak": 2.8, "slope": 1, "ca": 3, "thal": 2}},
+                {"name": "Near threshold", "values": {"age": 56, "sex": 1, "cp": 1, "trestbps": 134, "chol": 250, "fbs": 0, "restecg": 1, "thalch": 146, "exang": 0, "oldpeak": 1.2, "slope": 1, "ca": 1, "thal": 0}},
+                {"name": "Missing values", "values": {"age": 58, "sex": 1, "cp": 3, "trestbps": 140, "chol": null, "fbs": 0, "restecg": 0, "thalch": null, "exang": 0, "oldpeak": 1.5, "slope": 1, "ca": null, "thal": 2}}
+            ]
+        },
+        "pneumonia": {
+            "population_caveat": "This model's validation used paediatric chest X-rays from a single hospital source. Performance on adult radiographs or images from other equipment is unverified."
+        }
+    },
+    "dashboard": {
+        "static_figures": [
+            "static_outputs/dashboard/cross_disease_comparison.png",
+            "static_outputs/dashboard/xai_quality_dashboard.png",
+            "static_outputs/dashboard/xai_robustness.png"
+        ],
+        "tables": [
+            "static_outputs/dashboard/FINAL_performance_table.csv",
+            "static_outputs/dashboard/FINAL_xai_quality_table.csv",
+            "static_outputs/dashboard/metrics_all_datasets_FINAL.csv",
+            "static_outputs/dashboard/xai_quality_metrics.csv"
+        ]
+    }
+}

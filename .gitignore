@@ -1,0 +1,35 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+build/
+dist/
+.eggs/
+.idea/
+.vscode/
+.ipynb_checkpoints/
+pytest_cache/
+.DS_Store
+*.egg-info/
+# Local environment
+.env
+
+# Editor temp
+*~
+# Logs
+logs/
+
+# Streamlit cache
+.streamlit/
+
+# Virtual environment for Windows
+.venv/
+
+# Heavy binaries (present on disk; not versioned in this working repo)
+artifacts/
+notebook_reference/*.ipynb
+*.output
+sk16venv/

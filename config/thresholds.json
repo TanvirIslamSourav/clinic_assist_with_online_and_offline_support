@@ -1,0 +1,6 @@
+{
+    "confidence_bands": {
+        "high": 0.85,
+        "moderate": 0.6
+    }
+}

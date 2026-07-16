@@ -1,0 +1,4 @@
+Dataset,Explainer,Faithfulness_Mean,Faithfulness_Median,Stability_Jaccard,Stability_Std,Top5_Features
+Diabetes,SHAP+LIME,-0.2206,-0.0957,0.8444,0.1663,"BMI_Glucose, Glucose, Age_group, Insulin, Age_Glucose"
+Heart,SHAP+LIME,-0.024,0.01,0.9,0.1528,"cat__cp_asymptomatic, num__chol, num__oldpeak_hr, cat__cp_atypical angina, cat__exang_False"
+Pneumonia,Grad-CAM,-0.0342,0.0,N/A,N/A,Lung opacity regions (spatial)

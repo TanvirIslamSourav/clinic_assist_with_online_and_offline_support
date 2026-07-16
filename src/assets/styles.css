@@ -1,0 +1,276 @@
+:root {
+    --bg-base: #e6eef5;
+    --bg-mid: #f0f4f9;
+    --bg-soft: #f8fafd;
+    --surface: #ffffff;
+    --surface-soft: #f6f9fc;
+    --brand-700: #0f4c5c;
+    --brand-600: #12647a;
+    --brand-500: #1f7a8c;
+    --text-main: #0f172a;
+    --text-muted: #334155;
+    --line: #c9d6e3;
+    --focus-ring: rgba(31, 122, 140, 0.26);
+    --warning-bg: #fff7e2;
+    --warning-line: #efb84d;
+}
+
+.stApp {
+    font-family: "Avenir Next", "Trebuchet MS", "Segoe UI", sans-serif;
+    color: var(--text-main);
+    color-scheme: light;
+    background:
+        radial-gradient(1100px 620px at -12% -20%, #caddea 0%, transparent 60%),
+        radial-gradient(900px 560px at 112% 0%, #dbe8f2 0%, transparent 55%),
+        linear-gradient(165deg, var(--bg-base) 0%, var(--bg-mid) 46%, var(--bg-soft) 100%);
+}
+
+[data-testid="stAlert"] {
+    border-radius: 12px;
+    border: 1px solid var(--warning-line);
+    background: var(--warning-bg);
+    color: var(--text-main) !important;
+}
+
+[data-testid="stAlert"] p,
+[data-testid="stAlert"] div,
+[data-testid="stAlert"] span,
+[data-testid="stAlert"] li,
+[data-testid="stAlert"] strong,
+[data-testid="stAlert"] svg {
+    color: var(--text-main) !important;
+    fill: currentColor !important;
+}
+
+[data-testid="stFileUploader"] {
+    color: var(--text-main) !important;
+}
+
+[data-testid="stFileUploader"] * {
+    color: var(--text-main) !important;
+}
+
+[data-testid="stFileUploader"] button {
+    background: linear-gradient(180deg, #1b8093 0%, #11677a 100%) !important;
+    color: #f8fafc !important;
+    border: 1px solid #0f5a6c !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+}
+
+[data-testid="stFileUploader"] button:hover {
+    background: linear-gradient(180deg, #2390a4 0%, #14748a 100%) !important;
+    color: #f8fafc !important;
+}
+
+[data-testid="stFileUploader"] small,
+[data-testid="stFileUploader"] p,
+[data-testid="stFileUploader"] label,
+[data-testid="stFileUploader"] span {
+    color: var(--text-muted) !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--brand-700);
+    letter-spacing: 0.01em;
+}
+
+.stMarkdown p,
+.stMarkdown li,
+.stCaption,
+label,
+span {
+    color: var(--text-main);
+}
+
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #0f4c5c 0%, #12596f 58%, #187086 100%);
+    border-right: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] .stCaption {
+    color: #eef6fb !important;
+}
+
+[data-testid="stSidebar"] [data-baseweb="radio"] label {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-bottom: 0.4rem;
+    padding: 0.35rem 0.45rem;
+}
+
+[data-baseweb="input"] input,
+[data-baseweb="textarea"] textarea,
+.stNumberInput input,
+.stTextInput input,
+.stTextArea textarea,
+.stDateInput input,
+.stTimeInput input,
+.stSelectbox [data-baseweb="select"]>div,
+.stMultiSelect [data-baseweb="select"]>div {
+    background: #ffffff !important;
+    border: 1px solid var(--line) !important;
+    color: var(--text-main) !important;
+    border-radius: 12px !important;
+}
+
+[data-baseweb="input"] input::placeholder,
+[data-baseweb="textarea"] textarea::placeholder,
+.stNumberInput input::placeholder,
+.stTextInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: #64748b !important;
+}
+
+[data-baseweb="input"] input:focus,
+[data-baseweb="textarea"] textarea:focus,
+.stNumberInput input:focus,
+.stTextInput input:focus,
+.stTextArea textarea:focus,
+.stSelectbox [data-baseweb="select"]>div:focus-within,
+.stMultiSelect [data-baseweb="select"]>div:focus-within {
+    border-color: var(--brand-500) !important;
+    box-shadow: 0 0 0 0.18rem var(--focus-ring) !important;
+}
+
+[data-testid="stSidebar"] [data-baseweb="input"] input,
+[data-testid="stSidebar"] .stNumberInput input,
+[data-testid="stSidebar"] .stTextInput input,
+[data-testid="stSidebar"] .stTextArea textarea,
+[data-testid="stSidebar"] .stSelectbox [data-baseweb="select"]>div,
+[data-testid="stSidebar"] .stMultiSelect [data-baseweb="select"]>div {
+    background: #f9fcff !important;
+    color: #0f172a !important;
+    border: 1px solid #b7cad8 !important;
+}
+
+div[role="listbox"] {
+    background: #ffffff !important;
+    border: 1px solid var(--line) !important;
+    color: var(--text-main) !important;
+}
+
+div[role="option"] {
+    color: var(--text-main) !important;
+    background: #ffffff !important;
+}
+
+div[role="option"][aria-selected="true"] {
+    background: #e8f3f7 !important;
+    color: #0e4453 !important;
+}
+
+div[role="option"]:hover {
+    background: #f1f7fb !important;
+}
+
+[data-testid="stMetric"] {
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 0.65rem 0.8rem;
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--brand-600);
+    font-weight: 700;
+}
+
+/* Keep figures readable without taking over the full viewport */
+[data-testid="stImage"] img {
+    border-radius: 10px;
+    max-height: 560px;
+    object-fit: contain;
+}
+
+@media (max-width: 992px) {
+    [data-testid="stImage"] img {
+        max-height: 420px;
+    }
+}
+
+.hero-figure-wrapper {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-soft);
+    padding: 0.65rem 0.65rem 0.4rem 0.65rem;
+    margin: 0.2rem 0 1rem 0;
+}
+
+.hero-figure-image {
+    width: 100%;
+    max-height: 95vh;
+    object-fit: contain;
+    border-radius: 10px;
+    display: block;
+}
+
+.hero-figure-caption {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    margin-top: 0.4rem;
+    text-align: center;
+}
+
+@media (max-width: 992px) {
+    .hero-figure-image {
+        max-height: 78vh;
+    }
+}
+
+.stButton>button {
+    background: linear-gradient(180deg, #1b8093 0%, #11677a 100%);
+    color: #f8fafc;
+    border: 1px solid #0f5a6c;
+    border-radius: 12px;
+    font-weight: 700;
+    box-shadow: 0 6px 14px rgba(17, 103, 122, 0.25);
+}
+
+.stButton>button:hover {
+    background: linear-gradient(180deg, #2390a4 0%, #14748a 100%);
+}
+
+
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+details {
+    background: var(--surface-soft);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+}
+
+summary {
+    color: var(--brand-700);
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .main .block-container {
+        padding: 0.92rem 0.82rem 1.02rem 0.82rem;
+        border-radius: 13px;
+    }
+}
